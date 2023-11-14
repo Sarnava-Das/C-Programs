@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
+#include <ctype.h> 
 
 
 struct Stack {
@@ -32,28 +32,29 @@ void push(struct Stack* stack, int value) {
 int pop(struct Stack* stack) {
     if (stack->top == -1) {
         printf("Stack is empty. Cannot pop.\n");
-        return 0;
+        return 0; 
     }
     return stack->array[stack->top--];
 }
 
 
-int evaluatePostfix(char* postfix) {
-    int length = strlen(postfix);
+int evaluatePrefix(char* prefix) {
+    int length = strlen(prefix);
     struct Stack* stack = createStack(length);
     if (!stack)
         return 0; 
 
-    for (int i = 0; i < length; i++) {
-        char c = postfix[i];
+   
+    for (int i = length - 1; i >= 0; i--) {
+        char c = prefix[i];
 
         if (isdigit(c)) 
             push(stack, c - '0'); 
-        else if (c == ' ' || c == '\t') {
+        else if (c == ' ' || c == '\t') { 
             // Ignore whitespace
-        } else {
-            int operand2 = pop(stack);
+         } else {
             int operand1 = pop(stack);
+            int operand2 = pop(stack);
             int result;
 
             switch (c) {
@@ -85,22 +86,23 @@ int evaluatePostfix(char* postfix) {
     if (stack->top == 0) 
         return stack->array[0]; 
     else {
-        printf("Invalid postfix expression.\n");
+        printf("Invalid prefix expression.\n");
         return 0;
     }
 }
 
 int main() {
-    char postfix[100];
-    printf("Enter a postfix expression: ");
-    fgets(postfix, sizeof(postfix), stdin);
+    char prefix[100];
+    printf("Enter a prefix expression: ");
+    fgets(prefix, sizeof(prefix), stdin);
 
-    // Remove the newline character from the input
-    size_t len = strlen(postfix);
-    if (len > 0 && postfix[len - 1] == '\n') 
-        postfix[len - 1] = '\0';
     
-    int result = evaluatePostfix(postfix);
+    size_t len = strlen(prefix);
+    if (len > 0 && prefix[len - 1] == '\n') 
+        prefix[len - 1] = '\0';
+    
+
+    int result = evaluatePrefix(prefix);
     if (result != 0) 
         printf("Result: %d\n", result);
     
