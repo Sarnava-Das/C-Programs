@@ -55,7 +55,7 @@ int evaluatePrefix(char* prefix) {
 
         if (isdigit(c)) 
             push(stack, c - '0'); 
-        else if (c == ' ' || c == '\t') { 
+        else if (c == ' ' || c == '\t' || c=='\n') { 
             // Ignore whitespace
          } else {
             int operand1 = pop(stack);
@@ -102,9 +102,9 @@ int main() {
     fgets(prefix, sizeof(prefix), stdin);
 
     
-    size_t len = strlen(prefix);
-    if (len > 0 && prefix[len - 1] == '\n') 
-        prefix[len - 1] = '\0';
+    // size_t len = strlen(prefix);
+    // if (len > 0 && prefix[len - 1] == '\n') 
+    //     prefix[len - 1] = '\0';
     
 
     int result = evaluatePrefix(prefix);
