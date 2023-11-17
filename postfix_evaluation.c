@@ -42,7 +42,9 @@ int evaluatePostfix(char* postfix) {
     int length = strlen(postfix);
     struct Stack* stack = createStack(length);
     if (!stack)
-        return 0; 
+    {   printf("Memory not allocated for stack\n");
+        exit(1); 
+    }
 
     for (int i = 0; i < length; i++) {
         char c = postfix[i];
@@ -69,13 +71,13 @@ int evaluatePostfix(char* postfix) {
                 case '/':
                     if (operand2 == 0) {
                         printf("Division by zero is not allowed.\n");
-                        return 0;
+                        exit(1);
                     }
                     result = operand1 / operand2;
                     break;
                 default:
                     printf("Invalid operator: %c\n", c);
-                    return 0;
+                    exit(1);
             }
 
             push(stack, result);
@@ -86,7 +88,7 @@ int evaluatePostfix(char* postfix) {
         return stack->array[0]; 
     else {
         printf("Invalid postfix expression.\n");
-        return 0;
+        exit(1);
     }
 }
 
@@ -101,8 +103,7 @@ int main() {
         postfix[len - 1] = '\0';
     
     int result = evaluatePostfix(postfix);
-    if (result != 0) 
-        printf("Result: %d\n", result);
+    printf("Result: %d\n", result);
     
 
     return 0;

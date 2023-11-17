@@ -8,9 +8,9 @@ int main() {
  
     fgets(filename, sizeof(filename), stdin);
     size_t len = strlen(filename);
-    if (len > 0 && filename[len - 1] == '\n') {
+    if (len > 0 && filename[len - 1] == '\n') 
         filename[len - 1] = '\0';
-    }
+    
 
     file = fopen(filename, "r");
     if (file == NULL) {
@@ -18,9 +18,9 @@ int main() {
         return 1;
     }
     printf("Contents of the file '%s':\n", filename);
-    while (fgets(line, sizeof(line), file) != NULL) {
+    while (fgets(line, sizeof(line), file) != NULL) 
         printf("%s", line);
-    }
+    
 
     fclose(file);
     return 0;

@@ -42,7 +42,12 @@ int evaluatePrefix(char* prefix) {
     int length = strlen(prefix);
     struct Stack* stack = createStack(length);
     if (!stack)
-        return 0; 
+    {
+          printf("Memory not allocated for stack\n");
+        exit(1);
+
+    }
+       
 
    
     for (int i = length - 1; i >= 0; i--) {
@@ -70,13 +75,13 @@ int evaluatePrefix(char* prefix) {
                 case '/':
                     if (operand2 == 0) {
                         printf("Division by zero is not allowed.\n");
-                        return 0;
+                        exit(1);
                     }
                     result = operand1 / operand2;
                     break;
                 default:
                     printf("Invalid operator: %c\n", c);
-                    return 0;
+                    exit(1);
             }
 
             push(stack, result);
@@ -87,7 +92,7 @@ int evaluatePrefix(char* prefix) {
         return stack->array[0]; 
     else {
         printf("Invalid prefix expression.\n");
-        return 0;
+       exit(1);
     }
 }
 
@@ -103,8 +108,7 @@ int main() {
     
 
     int result = evaluatePrefix(prefix);
-    if (result != 0) 
-        printf("Result: %d\n", result);
+    printf("Result: %d\n", result);
     
 
     return 0;
