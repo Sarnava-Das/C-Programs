@@ -51,7 +51,7 @@ int evaluatePostfix(char* postfix) {
 
         if (isdigit(c)) 
             push(stack, c - '0'); 
-        else if (c == ' ' || c == '\t') {
+        else if (c == ' ' || c == '\t' || c =='\n') {
             // Ignore whitespace
         } else {
             int operand2 = pop(stack);
@@ -97,10 +97,10 @@ int main() {
     printf("Enter a postfix expression: ");
     fgets(postfix, sizeof(postfix), stdin);
 
-    // Remove the newline character from the input
-    size_t len = strlen(postfix);
-    if (len > 0 && postfix[len - 1] == '\n') 
-        postfix[len - 1] = '\0';
+    // // Remove the newline character from the input
+    // size_t len = strlen(postfix);
+    // if (len > 0 && postfix[len - 1] == '\n') 
+    //     postfix[len - 1] = '\0';
     
     int result = evaluatePostfix(postfix);
     printf("Result: %d\n", result);
