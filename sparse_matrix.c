@@ -11,14 +11,12 @@ int main() {
     for (i = 0; i < m; i++) {
         printf("Enter the row of the matrix \n");
         for (j = 0; j < n; j++)
+           { 
             scanf("%d", &a[i][j]);
-    }
-
-    for (i = 0; i < m; i++) {
-        for (j = 0; j < n; j++) {
             if (a[i][j] != 0)
                 c++;
-        }
+
+           }
     }
 
     int b[3][c], p = 0;
@@ -35,7 +33,7 @@ int main() {
 
     printf("Printing the sparse matrix \n");
     for (i = 0; i < 3; i++) {
-        for (j = 0; j < c; j++)
+        for (j = 0; j < p; j++)
             printf("%d \t", b[i][j]);
         printf("\n");
     }
