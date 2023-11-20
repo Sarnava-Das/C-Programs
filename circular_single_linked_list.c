@@ -144,9 +144,9 @@ struct Node* deleteAfterNode(struct Node* head, int target) {
 
    
   do {
-        if (current->data == target) {
+        if (current->data == target) 
             break;
-        }
+        
 
         previous = current;
         current = current->next;
