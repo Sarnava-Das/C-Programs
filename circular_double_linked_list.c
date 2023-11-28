@@ -123,27 +123,28 @@ struct Node* deleteAfterNode(struct Node* head, int target) {
     }
 
     struct Node* current = head;
-	struct Node* previous = NULL;
+	
     do {
         if (current->data == target) 
             break;
-        previous= current;
+      
         current = current->next;
     } while (current != head);
 
-    if ((current == head && previous!=NULL) || current->next==current) {
+    if (current == head && current->data!=target) {
         printf("Target node not found in the circular doubly linked list. Nothing to delete.\n");
         return head;
     }
-
+    if(current->next==current && current->data==target)
+    {
+        free(head);
+        return NULL;
+    }
     struct Node* temp = current->next;
-  
-		current->next->next->prev= current;
-        current->next = current->next->next;  
-	
-        free(temp);
-      
-  
+  	current->next->next->prev= current;
+    current->next = current->next->next;  
+    free(temp);
+ 
     if(current->next ==current)
      head = current;
 	return head;
