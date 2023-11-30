@@ -30,11 +30,11 @@ void enqueue(struct CircularQueue *q, int value) {
         return;
     }
 
-    if (isEmpty(q)) {
+    if (isEmpty(q)) 
         q->front = q->rear = 0;
-    } else {
+    else 
         q->rear = (q->rear + 1) % q->maxSize;
-    }
+    
 
     q->items[q->rear] = value;
     printf("Element %d inserted successfully.\n", value);
@@ -50,12 +50,11 @@ int dequeue(struct CircularQueue *q) {
 
     deletedValue = q->items[q->front];
 
-    if (q->front == q->rear) {
-        
+    if (q->front == q->rear) 
         q->front = q->rear = -1;
-    } else {
+    else 
         q->front = (q->front + 1) % q->maxSize;
-    }
+    
 
     return deletedValue;
 }
