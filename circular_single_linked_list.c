@@ -44,14 +44,14 @@ struct Node* insertAtBeginning(struct Node* head, int value) {
     }
 
   
-    struct Node* last = head;
-    while (last->next != head) {
-        last = last->next;
+    struct Node* current = head;
+    while (current->next != head) {
+        current = current->next;
     }
 
    
     newNode->next = head;
-    last->next = newNode;
+    current->next = newNode;
 
     return newNode; 
 }
@@ -66,13 +66,13 @@ struct Node* insertAtEnd(struct Node* head, int value) {
     }
 
  
-    struct Node* last = head;
-    while (last->next != head) {
-        last = last->next;
+    struct Node* current = head;
+    while (current->next != head) {
+        current = current->next;
     }
 
   
-    last->next = newNode;
+    current->next = newNode;
     newNode->next = head; 
 
     return head; // Head remains unchanged
@@ -140,22 +140,21 @@ struct Node* deleteAfterNode(struct Node* head, int target) {
     }
   
     struct Node* current = head;
-    struct Node* previous= NULL;
-
-   
+ 
   do {
         if (current->data == target) 
             break;
-        
-
-        previous = current;
-        current = current->next;
+            current = current->next;
     } while (current != head);
 
-    if ((current == head && previous!=NULL) || current->next==current) {
-
-        printf("Target node not found in the circular linked list. Nothing to delete.\n");
+     if (current == head && current->data!=target) {
+        printf("Target node not found in the circular doubly linked list. Nothing to delete.\n");
         return head;
+    }
+    if(current->next==current && current->data==target)
+    {
+        free(head);
+        return NULL;
     }
 
 	
