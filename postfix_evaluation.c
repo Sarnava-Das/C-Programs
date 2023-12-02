@@ -32,7 +32,7 @@ void push(struct Stack* stack, int value) {
 int pop(struct Stack* stack) {
     if (stack->top == -1) {
         printf("Stack is empty. Cannot pop.\n");
-        return 0;
+       exit(1);
     }
     return stack->array[stack->top--];
 }
