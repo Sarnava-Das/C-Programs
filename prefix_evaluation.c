@@ -32,7 +32,7 @@ void push(struct Stack* stack, int value) {
 int pop(struct Stack* stack) {
     if (stack->top == -1) {
         printf("Stack is empty. Cannot pop.\n");
-        return 0; 
+       exit(1); 
     }
     return stack->array[stack->top--];
 }
@@ -47,8 +47,6 @@ int evaluatePrefix(char* prefix) {
         exit(1);
 
     }
-       
-
    
     for (int i = length - 1; i >= 0; i--) {
         char c = prefix[i];
@@ -91,6 +89,7 @@ int evaluatePrefix(char* prefix) {
     if (stack->top == 0) 
         return stack->array[0]; 
     else {
+      
         printf("Invalid prefix expression.\n");
        exit(1);
     }
