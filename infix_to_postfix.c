@@ -20,14 +20,14 @@ struct Stack* createStack(unsigned capacity) {
 
 
 int isOperator(char ch) {
-    return (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^');
+    return (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^' || ch == '%');
 }
 
 
 int precedence(char ch) {
     if (ch == '^')
         return 3;
-    else if (ch == '*' || ch == '/')
+    else if (ch == '*' || ch == '/' || ch == '%')
         return 2;
     else if (ch == '+' || ch == '-')
         return 1;
