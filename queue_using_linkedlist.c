@@ -26,7 +26,7 @@ struct Queue* createQueue() {
 
 
 int isEmpty(struct Queue* queue) {
-    return (queue->front == NULL);
+    return (queue->front == NULL && queue->rear==NULL);
 }
 
 
